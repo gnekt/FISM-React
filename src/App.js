@@ -1,24 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import Es1Errors from './esercizi/Es1/Es1Errors';
+import Es1 from './esercizi/Es1/Es1';
+import Es2Errors from './esercizi/Es2/Es2Errors';
+import Es2 from './esercizi/Es2/Es2';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    Implementazione Errata <br />
+    <Es2Errors /> 
+    Implementazione Corretta<br />
+    <Es2 />
+    </>
   );
 }
 
