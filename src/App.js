@@ -35,7 +35,7 @@ function App() {
           variant='outlined'
           className={activeTab === "esercizi" ? "active" : ""} 
           onClick={() => setActiveTab("esercizi")}
-          disabled
+          
         >
           Esercizi
         </Button>

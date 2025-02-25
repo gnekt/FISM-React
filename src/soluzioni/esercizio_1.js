@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Box from '@mui/material/Box';
 
-function Esercizio1() {
-  const [todos, setTodos] = useState([
-    { id: 1, task: 'Comprare il latte' },
-    { id: 2, task: 'Pulire la casa' },
-    { id: 3, task: 'Preparare la cena' }
-  ]);
-  
-  const removeTask = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-  
+const Esercizio1 = () => {
   return (
-    <div>
-      <h2>Lista di Compiti</h2>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            {todo.task} 
-            <button onClick={() => removeTask(todo.id)}>Rimuovi</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Box
+      sx={{
+        p: 2,
+        m: 2,
+        backgroundColor: 'primary.main',
+        borderRadius: 2,
+        color: 'white'
+      }}
+    >
+      Questo è un Box con stili personalizzati.
+    </Box>
   );
-}
+};
 
 export default Esercizio1;
+

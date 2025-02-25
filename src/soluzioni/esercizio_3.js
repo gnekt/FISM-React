@@ -1,42 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Grid from '@mui/material/Grid2'; // Importazione di Grid2
+import Box from '@mui/material/Box';
+import { palette } from '@mui/system';
+import { styled, useTheme } from "@mui/material/styles";
 
-function Question({ q, a, isActive, onToggle }) {
+const Esercizio3 = () => {
+  const theme = useTheme(); 
   return (
-    <div style={{ border: '1px solid #aaa', margin: '10px', padding: '10px' }}>
-      <h3>{q}</h3>
-      <button onClick={onToggle}>{isActive ? 'Nascondi Risposta' : 'Mostra Risposta'}</button>
-      {isActive && <p>{a}</p>}
-    </div>
+    <Grid container spacing={2}>
+      <Grid size={{ xs: 12, md: 4 }}>
+        <Box
+          sx={{
+            p: 2,
+            backgroundColor: theme.palette.primary.light,
+            textAlign: 'center',
+            borderRadius: 1
+          }}
+        >
+          Colonna 1
+        </Box>
+      </Grid>
+      <Grid size={{ xs: 12, md: 4 }}>
+        <Box
+          sx={{
+            p: 2,
+            backgroundColor: theme.palette.primary.main,
+            textAlign: 'center',
+            borderRadius: 1
+          }}
+        >
+          Colonna 2
+        </Box>
+      </Grid>
+      <Grid size={{ xs: 12, md: 4 }}>
+        <Box
+          sx={{
+            p: 2,
+            backgroundColor: 'primary.dark',
+            textAlign: 'center',
+            borderRadius: 1
+          }}
+        >
+          Colonna 3
+        </Box>
+      </Grid>
+    </Grid>
   );
-}
-
-function Esercizio3() {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  
-  const questions = [
-    { id: 0, q: 'Cos\'è React?', a: 'React è una libreria JavaScript per costruire interfacce utente.' },
-    { id: 1, q: 'Cosa sono i componenti?', a: 'I componenti sono blocchi riutilizzabili di codice che definiscono l’interfaccia.' },
-    { id: 2, q: 'Che cos\'è lo state?', a: 'Lo state è un oggetto che contiene dati dinamici di un componente.' }
-  ];
-  
-  const toggleQuestion = (id) => {
-    setActiveQuestion(activeQuestion === id ? null : id);
-  };
-  
-  return (
-    <div>
-      <h2>FAQ</h2>
-      {questions.map(item => (
-        <Question 
-          key={item.id}
-          q={item.q}
-          a={item.a}
-          isActive={activeQuestion === item.id}
-          onToggle={() => toggleQuestion(item.id)}
-        />
-      ))}
-    </div>
-  );
-}
+};
 
 export default Esercizio3;

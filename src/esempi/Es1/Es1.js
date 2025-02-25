@@ -1,7 +1,8 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import { Container, TextField } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import Box from '@mui/material/Box';
 
 export default function Es1() {
   const [testo, setTesto] = React.useState("Hello world");
@@ -12,7 +13,7 @@ export default function Es1() {
   };
 
   return (
-    <>
+    <Box sx={{ p: 3 }}>
       
       <Grid container spacing={2} direction={"column"}>
         <Grid item size={3}>
@@ -27,13 +28,13 @@ export default function Es1() {
           <Button
             variant={cliccato ? "contained" : "outlined"}
             onClick={handleClick}
-            fullWidth
+            
             sx={{ height: "100%" }}
           >
             {testo}
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 }
