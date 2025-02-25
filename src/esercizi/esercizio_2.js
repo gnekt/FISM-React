@@ -1,0 +1,2 @@
+// Crea un componente MovieList che gestisce un array di film (ogni film ha id, title e un flag watched). 
+// Aggiungi un pulsante per ogni film che permette di invertire lo stato watched in modo immutabile.

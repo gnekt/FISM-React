@@ -1,0 +1,2 @@
+// Crea un componente FAQ che contiene una lista di domande e risposte. 
+// Lo stato dell’accordion (la domanda attiva) viene gestito nel componente padre e passato a ciascun componente Question tramite props.
