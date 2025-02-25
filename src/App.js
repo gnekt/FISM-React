@@ -16,6 +16,7 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import AppBonus from './soluzioni/bonus/AppBonus';
 
 function App() {
   const [activeTab, setActiveTab] = useState("esempi");
@@ -38,6 +39,12 @@ function App() {
           onClick={() => setActiveTab("esercizi")}
         >
           Esercizi
+        </button>
+        <button
+          className={activeTab === "bonus" ? "active" : ""}
+          onClick={() => setActiveTab("bonus")}
+        >
+          Bonus
         </button>
       </nav>
       
@@ -97,6 +104,11 @@ function App() {
             <Box className="item">
               <Esercizio5 />
             </Box>
+          </Box>
+        )}
+        {activeTab === "bonus" && (
+          <Box className="tab-content">
+            <AppBonus />
           </Box>
         )}
       </main>
