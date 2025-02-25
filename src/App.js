@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import { Button, Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import AppBonus from './soluzioni/bonus/AppBonus';
+import Es4 from './esempi/Es4/Es4';
 
 function App() {
   const [activeTab, setActiveTab] = useState("esempi");
@@ -66,6 +67,10 @@ function App() {
             <Divider>Esempio 3</Divider>
             <Box className="item">
               <Es3 />
+            </Box>
+            <Divider>Esempio 4</Divider>
+            <Box className="item">
+              <Es4 />
             </Box>
           </Box>
         )}

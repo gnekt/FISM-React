@@ -1,175 +1,281 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid2';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import Typography from '@mui/material/Typography';
+import React, { useState } from "react";
+// Importiamo i componenti Material UI richiesti
+import Grid from "@mui/material/Grid2"; // Grid2
+import {
+  Box,
+  Paper,
+  TextField,
+  Alert,
+  Radio,
+  Select,
+  MenuItem,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 function AppBonus() {
-  const [users, setUsers] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [editingUser, setEditingUser] = useState(null);
+  // Stato per gestire la modalità: "login" oppure "register"
+  const [mode, setMode] = useState("login");
+  const [error, setError] = useState("");
+  const theme = useTheme();
 
-  // Recupera la lista degli utenti all'avvio del componente
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // Dati per il login
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
 
-  const fetchUsers = () => {
-     axios.get('http://localhost:5000/users')
-     .then(res => {
-        if (res.data){
-          setUsers(res.data);
-        }
-      })
-      .catch(error => {
-        console.error("Errore nel recupero degli utenti", error);
-      });
+  // Dati per la registrazione
+  const [registerData, setRegisterData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    gender: "",
+    role: "",
+  });
+
+  // Gestione delle modifiche del form di login
+  const handleLoginChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  // Gestione delle modifiche del form di registrazione
+  const handleRegisterChange = (e) => {
+    const { name, value } = e.target;
+    setRegisterData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Simulazione della sottomissione del form di login
+  const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (editingUser) {
-      // Aggiornamento dell'utente esistente
-        axios.put(`http://localhost:5000/users/${editingUser.id}`, {
-          username,
-          email
-        })
-        .then(res => {
-          const updatedUser = res.data;
-          setUsers(users.map(user => user.id === updatedUser.id ? updatedUser : user));
-          setEditingUser(null);
-          setUsername('');
-          setEmail('');
-        })
-        .catch(error => {
-          console.error("Errore nell'aggiornamento", error);
-        });
-    }
-    else {
-      // Creazione di un nuovo utente
-      try {
-        axios.post('http://localhost:5000/users', {
-          username,
-          email
-        })
-        .then(res => {
-          console.log(res.data);
-          setUsers([...users, res.data]);
-          setUsername('');
-          setEmail('');
-        });
-      } catch (error) {
-        console.error("Errore nella creazione", error);
-      }
+    if (!loginData.email || !loginData.password) {
+      setError("Compilare tutti i campi per il login.");
+    } else {
+      setError("");
+      // Qui andrebbe chiamata l'API per il login
+      console.log("Dati di login:", loginData);
+      alert("Login effettuato con successo!");
     }
   };
 
-  const handleEdit = (user) => {
-    setEditingUser(user);
-    setUsername(user.username);
-    setEmail(user.email);
-  };
-
-  const handleDelete = (id) => {
-    try {
-      axios.delete(`http://localhost:5000/users/${id}`);
-      setUsers(users.filter(user => user.id !== id));
-    } catch (error) {
-      console.error("Errore nell'eliminazione", error);
+  // Simulazione della sottomissione del form di registrazione
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    if (
+      !registerData.username ||
+      !registerData.email ||
+      !registerData.password ||
+      !registerData.gender ||
+      !registerData.role
+    ) {
+      setError("Compilare tutti i campi per la registrazione.");
+    } else {
+      setError("");
+      // Qui andrebbe chiamata l'API per la registrazione
+      console.log("Dati di registrazione:", registerData);
+      alert("Registrazione effettuata con successo!");
     }
   };
 
   return (
-    <>
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Gestione Utenti del Forum</h1>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-          style={{ marginRight: '10px' }}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          style={{ marginRight: '10px' }}
-        />
-        <button type="submit">
-          {editingUser ? 'Aggiorna' : 'Aggiungi'} Utente
-        </button>
-      </form>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {users.map(user => (
-          <li key={user.id} style={{ marginBottom: '10px' }}>
-            <strong>{user.id}</strong> - {user.username} ({user.email})
-            <button onClick={() => handleEdit(user)} style={{ marginLeft: '10px' }}>
-              Modifica
-            </button>
-            <button onClick={() => handleDelete(user.id)} style={{ marginLeft: '5px' }}>
-              Elimina
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Grid
+        size={{ xs: 12, sm: 8, md: 6, lg: 7 }}
+        direction={"column"}
+        spacing={2}
+      >
+        <Paper elevation={3} style={{ padding: theme.spacing(4) }}>
+          <Grid container justifyContent="center" spacing={2} direction={"row"}>
+            <Grid item size={{ xs: 12 }} >
+              <Typography variant="h2" align="center">
+                {mode === "login" ? "Login" : "Registrazione"}
+              </Typography>
+            </Grid>
+            <Grid item size={{ xs: 3 }}>
+              <Button
+                onClick={() => {
+                  setMode("login");
+                  setError("");
+                }}
+                variant={mode === "login" ? "contained" : "outlined"}
+              >
+                Login
+              </Button>
+            </Grid>
+            <Grid item size={{ xs: 3 }}>
+              <Button
+                onClick={() => {
+                  setMode("register");
+                  setError("");
+                }}
+                variant={mode === "register" ? "contained" : "outlined"}
+              >
+                Registrazione
+              </Button>
+            </Grid>
+          </Grid>
 
-    <div style={{ padding: '20px'}}>
-      <Typography variant="h4" gutterBottom>Gestione Utenti del Forum: React</Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} direction={'column'} sx={{margin: "auto", width: "100%"}}>
-          <Grid item size={2}>
-            <TextField
-              type="text"
-              placeholder="Username"
-              value={username}
-              fullWidth
-              onChange={e => setUsername(e.target.value)}
-              required
-            />
-          </Grid>
-          <Grid item size={2}>
-            <TextField
-              fullWidth
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-          </Grid>
-          <Grid item size={2}>
-            <Button variant="contained" type="submit" fullWidth>
-              {editingUser ? 'Aggiorna' : 'Aggiungi'} Utente
-            </Button>
-          </Grid>
-        </Grid>
-        
-      </form>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {users.map(user => (
-          <li key={user.id} style={{ marginBottom: '10px' }}>
-            <strong>{user.id}</strong> - {user.username} ({user.email})
-            <button onClick={() => handleEdit(user)} style={{ marginLeft: '10px' }}>
-              Modifica
-            </button>
-            <button onClick={() => handleDelete(user.id)} style={{ marginLeft: '5px' }}>
-              Elimina
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-    </>
+          {error && (
+            <Alert severity="error" style={{ marginBottom: "1rem" }}>
+              {error}
+            </Alert>
+          )}
+
+          {mode === "login" ? (
+            <form onSubmit={handleLoginSubmit}>
+              <TextField
+                label="Email"
+                name="email"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={loginData.email}
+                onChange={handleLoginChange}
+              />
+              <TextField
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={loginData.password}
+                onChange={handleLoginChange}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="remember"
+                    checked={loginData.remember}
+                    onChange={handleLoginChange}
+                  />
+                }
+                label="Ricordami"
+              />
+              <Box mt={2}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Accedi
+                </Button>
+              </Box>
+            </form>
+          ) : (
+            <form onSubmit={handleRegisterSubmit}>
+              <TextField
+                label="Username"
+                name="username"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={registerData.username}
+                onChange={handleRegisterChange}
+              />
+              <TextField
+                label="Email"
+                name="email"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={registerData.email}
+                onChange={handleRegisterChange}
+              />
+              <TextField
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={registerData.password}
+                onChange={handleRegisterChange}
+              />
+
+              {/* Selezione del genere tramite RadioGroup */}
+              <FormControl component="fieldset" margin="normal">
+                <FormLabel component="legend">Genere</FormLabel>
+                <RadioGroup
+                  row
+                  name="gender"
+                  value={registerData.gender}
+                  onChange={handleRegisterChange}
+                >
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Donna"
+                  />
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Uomo"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Altro"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Preferisco non dire"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              {/* Selezione del ruolo tramite Select */}
+              <FormControl fullWidth margin="normal">
+                <FormLabel>Ruolo</FormLabel>
+                <Select
+                  name="role"
+                  value={registerData.role}
+                  onChange={handleRegisterChange}
+                >
+                  <MenuItem value="">
+                    <em>Nessuno</em>
+                  </MenuItem>
+                  <MenuItem value="user">User</MenuItem>
+                  <MenuItem value="admin">Admin</MenuItem>
+                </Select>
+              </FormControl>
+
+              <Box mt={2}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Registrati
+                </Button>
+              </Box>
+            </form>
+          )}
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 
