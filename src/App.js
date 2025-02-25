@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Es1 from './esempi/Es1/Es1';
 import Es2 from './esempi/Es2/Es2';
-import Es3Opt1 from './esempi/Es3/Es3Opt1';
-import Es3Opt2 from './esempi/Es3/Es3Opt2';
+import Es3 from './esempi/Es3/Es3';
 import Esercizio1 from './soluzioni/esercizio_1';
 import Esercizio2 from './soluzioni/esercizio_2';
 import Esercizio3 from './soluzioni/esercizio_3';
@@ -66,10 +65,7 @@ function App() {
             </Paper>
             <Divider>Esempio 3</Divider>
             <Box className="item">
-              <Es3Opt1 />
-            </Box>
-            <Box className="item">
-              <Es3Opt2 />
+              <Es3 />
             </Box>
           </Box>
         )}
