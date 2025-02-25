@@ -1,33 +1,39 @@
-import { useState } from 'react';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 export default function Es1() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0
-  });
+  const [testo, setTesto] = React.useState("Hello world");
+  const [cliccato, setCliccato] = React.useState(false);
+
+  const handleClick = () => {
+    setCliccato(!cliccato);
+  };
+
   return (
-    <div
-      onPointerMove={e => {
-        setPosition({
-          x: e.clientX,
-          y: e.clientY
-        });
-      }}
-      style={{
-        position: 'relative',
-        width: '100vw',
-        height: '100vh',
-      }}>
-      <div style={{
-        position: 'absolute',
-        backgroundColor: 'red',
-        borderRadius: '50%',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        left: -10,
-        top: -10,
-        width: 20,
-        height: 20,
-      }} />
-    </div>
+    <>
+      
+      <Grid container spacing={2} direction={"column"}>
+        <Grid item size={3}>
+          <TextField
+            id="textField1"
+            label="Inserisci qualcosa"
+            value={testo}
+            onChange={(e) => setTesto(e.target.value)}
+          />
+        </Grid>
+        <Grid item size={3}>
+          <Button
+            variant={cliccato ? "contained" : "outlined"}
+            onClick={handleClick}
+            fullWidth
+            sx={{ height: "100%" }}
+          >
+            {testo}
+          </Button>
+        </Grid>
+      </Grid>
+    </>
   );
 }

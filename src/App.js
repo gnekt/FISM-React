@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import Es1Errors from './esempi/Es1/Es1Errors';
 import Es1 from './esempi/Es1/Es1';
-import Es2Errors from './esempi/Es2/Es2Errors';
 import Es2 from './esempi/Es2/Es2';
-import Es3Errors from './esempi/Es3/Es3Opt1';
 import Es3Opt1 from './esempi/Es3/Es3Opt1';
 import Es3Opt2 from './esempi/Es3/Es3Opt2';
 import Esercizio1 from './soluzioni/esercizio_1';
@@ -14,7 +11,7 @@ import Esercizio4 from './soluzioni/esercizio_4';
 import Esercizio5 from './soluzioni/esercizio_5';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
-import { Paper } from '@mui/material';
+import { Button, Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import AppBonus from './soluzioni/bonus/AppBonus';
 
@@ -28,24 +25,28 @@ function App() {
       </header>
       
       <nav>
-        <button 
+        <Button 
+          variant='outlined'
           className={activeTab === "esempi" ? "active" : ""} 
           onClick={() => setActiveTab("esempi")}
         >
           Esempi
-        </button>
-        <button 
+        </Button>
+        <Button 
+          variant='outlined'
           className={activeTab === "esercizi" ? "active" : ""} 
           onClick={() => setActiveTab("esercizi")}
+          disabled
         >
           Esercizi
-        </button>
-        <button
+        </Button>
+        <Button
+          variant='outlined'
           className={activeTab === "bonus" ? "active" : ""}
           onClick={() => setActiveTab("bonus")}
         >
           Bonus
-        </button>
+        </Button>
       </nav>
       
       <main>
@@ -53,28 +54,17 @@ function App() {
           <Box className="tab-content">
             <Paper>
             <Box className="item">
-              <Es1Errors />
-            </Box>
-
-            <Box className="item">
               <Es1 />
             </Box>
             </Paper>
             <Divider>Esempio 2</Divider>
             <Paper sx={{padding: 2}} elevation={3}>
-            <Box className="item" sx={{marginTop: "3vh"}} >
-              <Typography variant="h6">Esempio 2 - Errore</Typography>
-              <Es2Errors />
-            </Box>
             <Box className="item">
-            <Typography variant="h6">Esempio 2 - Corretto</Typography>
+            <Typography variant="h6">Esempio 2</Typography>
               <Es2 />
             </Box>
             </Paper>
             <Divider>Esempio 3</Divider>
-            <Box className="item">
-              <Es3Errors />
-            </Box>
             <Box className="item">
               <Es3Opt1 />
             </Box>

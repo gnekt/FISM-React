@@ -1,61 +1,20 @@
-import { useState } from 'react';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { Typography } from '@mui/material';
 
 export default function Es2() {
-  const [person, setPerson] = useState({
-    firstName: 'Barbara',
-    lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com'
-  });
-
-  function handleFirstNameChange(e) {
-    setPerson({
-      ...person,
-      firstName: e.target.value
-    });
-  }
-
-  function handleLastNameChange(e) {
-    setPerson({
-      ...person,
-      lastName: e.target.value
-    });
-  }
-
-  function handleEmailChange(e) {
-    setPerson({
-      ...person,
-      email: e.target.value
-    });
-  }
-
   return (
-    <>
-      <label>
-        First name:
-        <input
-          value={person.firstName}
-          onChange={handleFirstNameChange}
-        />
-      </label>
-      <label>
-        Last name:
-        <input
-          value={person.lastName}
-          onChange={handleLastNameChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          value={person.email}
-          onChange={handleEmailChange}
-        />
-      </label>
-      <p>
-        {person.firstName}{' '}
-        {person.lastName}{' '}
-        ({person.email})
-      </p>
-    </>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Box sx={{ bgcolor: '#cfe8fc', height: '20vh', alignItems: 'center', justifyContent: 'center', display: 'flex' }}>
+          <Typography variant="h2" align='center'>
+            Inserisci qui il tuo codice
+          </Typography>
+        </Box>
+      </Container>
+    </React.Fragment>
   );
 }
