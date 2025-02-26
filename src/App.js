@@ -7,16 +7,16 @@ import Es2 from './esempi/Es2/Es2';
 import Es3Errors from './esempi/Es3/Es3Opt1';
 import Es3Opt1 from './esempi/Es3/Es3Opt1';
 import Es3Opt2 from './esempi/Es3/Es3Opt2';
-import Esercizio1 from './soluzioni/esercizio_1';
-import Esercizio2 from './soluzioni/esercizio_2';
-import Esercizio3 from './soluzioni/esercizio_3';
-import Esercizio4 from './soluzioni/esercizio_4';
-import Esercizio5 from './soluzioni/esercizio_5';
+// import Esercizio1 from './soluzioni/esercizio_1';
+// import Esercizio2 from './soluzioni/esercizio_2';
+// import Esercizio3 from './soluzioni/esercizio_3';
+// import Esercizio4 from './soluzioni/esercizio_4';
+// import Esercizio5 from './soluzioni/esercizio_5';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import AppBonus from './soluzioni/bonus/AppBonus';
+// import AppBonus from './soluzioni/bonus/AppBonus';
 import Counter from './frank/es1';
 import TextRender from './frank/es2';
 import Spesa from './frank/es5';
@@ -92,7 +92,7 @@ function App() {
             <Spesa/>
           </Box>
         )}
-        {activeTab === "esercizi" && (
+        {/* {activeTab === "esercizi" && (
           <Box className="tab-content">
             <Box className="item">
               <Esercizio1 />
@@ -119,7 +119,7 @@ function App() {
           <Box className="tab-content">
             <AppBonus />
           </Box>
-        )}
+        )} */}
       </main>
     </div>
   );
