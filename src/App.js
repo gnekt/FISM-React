@@ -17,6 +17,9 @@ import Box from '@mui/material/Box';
 import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import AppBonus from './soluzioni/bonus/AppBonus';
+import Counter from './frank/es1';
+import TextRender from './frank/es2';
+import Spesa from './frank/es5';
 
 function App() {
   const [activeTab, setActiveTab] = useState("esempi");
@@ -81,6 +84,12 @@ function App() {
             <Box className="item">
               <Es3Opt2 />
             </Box>
+            <Divider>Esercizi vecchi: 1</Divider>
+            <Counter/>
+            <Divider>Esercizi vecchi: 2</Divider>
+            <TextRender/>
+            <Divider>Esercizi vecchi: 5</Divider>
+            <Spesa/>
           </Box>
         )}
         {activeTab === "esercizi" && (
