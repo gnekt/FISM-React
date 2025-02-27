@@ -7,19 +7,21 @@ import Es2 from './esempi/Es2/Es2';
 import Es3Errors from './esempi/Es3/Es3Opt1';
 import Es3Opt1 from './esempi/Es3/Es3Opt1';
 import Es3Opt2 from './esempi/Es3/Es3Opt2';
-// import Esercizio1 from './soluzioni/esercizio_1';
-// import Esercizio2 from './soluzioni/esercizio_2';
-// import Esercizio3 from './soluzioni/esercizio_3';
-// import Esercizio4 from './soluzioni/esercizio_4';
-// import Esercizio5 from './soluzioni/esercizio_5';
+import Esercizio1 from './soluzioni/esercizio_1';
+import Esercizio2 from './soluzioni/esercizio_2';
+import Esercizio3 from './soluzioni/esercizio_3';
+import Esercizio4 from './soluzioni/esercizio_4';
+import Esercizio5 from './soluzioni/esercizio_5';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
-// import AppBonus from './soluzioni/bonus/AppBonus';
-import Counter from './frank/es1';
-import TextRender from './frank/es2';
-import Spesa from './frank/es5';
+import AppBonus from './soluzioni/bonus/AppBonus';
+import Counter from './esercizi_giacomo/es1';
+import TextRender from './esercizi_giacomo/es2';
+import Spesa from './esercizi_giacomo/es5';
+import TextInput from './esercizi_giacomo/es3';
+import ColorSwitcher from './esercizi_giacomo/es4';
 
 function App() {
   const [activeTab, setActiveTab] = useState("esempi");
@@ -88,11 +90,15 @@ function App() {
             <Counter/>
             <Divider>Esercizi vecchi: 2</Divider>
             <TextRender/>
+            <Divider>Esercizi vecchi: 3</Divider>
+            <TextInput />
+            <Divider>Esercizi vecchi: 4</Divider>
+            <ColorSwitcher/>
             <Divider>Esercizi vecchi: 5</Divider>
             <Spesa/>
           </Box>
         )}
-        {/* {activeTab === "esercizi" && (
+        {activeTab === "esercizi" && (
           <Box className="tab-content">
             <Box className="item">
               <Esercizio1 />
@@ -119,7 +125,7 @@ function App() {
           <Box className="tab-content">
             <AppBonus />
           </Box>
-        )} */}
+        )}
       </main>
     </div>
   );
